@@ -32,16 +32,23 @@ const server = http.createServer((req, res) => {
         let user = JSON.parse(data)
 
         fs.readFile("./data/data.js", (err, data) => {
+          //! Arrow function () =>{} ishlatishimizadan maqsad bu arrow function bu registratsiya o`ziga kegan "err", "data" ni qabul qivolib va ularni o`z o`rnida ishlatadi!  
           const arr = JSON.parse(data)
           arr.push(user)
 
           fs.writeFile("./data/data.js", JSON.stringify(arr), err => {
-            if (err) throw err //note: "Throw" runtime paytda xatolik bo`sa chiqarib beradi
+            if (err) throw err //!note: "Throw" runtime paytda xatolik bo`sa chiqarib beradi systemani to`xtatib qo`ymidi run-time error "type-error" qilib chiqarib beradi
             console.log("created")
           })
         })
       })
       res.end("data keldi")
+    }
+  }
+
+  if(req.method == "PUT"){
+    if(req.url.substring(1, 11) == "updateUser"){
+      const userID = req.url.split('/')[req.url.split('/').length - 1]
     }
   }
 })
