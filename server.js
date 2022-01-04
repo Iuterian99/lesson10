@@ -9,7 +9,17 @@ const fs = require("fs");
 
 // ! fs metodlari!
 /*
+! JSON.stringify 
+---->Jsonni string qilib yozib qo`yadi aks holda shunchaki obyekt deb o`ylidi biz yozgan ma`lumotlarni!
+
+!JSON.parse()
+-------> Stringlani olib tashab yana JSON formatga ko`chirib beradi!
+
+!fs.appendFile()
 fs.appendFile("./data/data.js") ----> oldindan yaratilgan data folderiga data.js file ni yaratib ichiga content joylab beradi. har yangi ma`lumot jo`natganimizada data.js da mavjud contentni o`chirmay davomidan qo`shib qo`yadi!
+
+!fs.writeFile()
+fs.writeFile("./data/data.js")----> oldindan yaratilgan data folderiga data.js file ni yaratib ichiga content joylab beradi. har yangi ma`lumot jo`natganimizada data.js da mavjud contentni o`chirib yangi ma`lumotni qo`shib qo`yadi!
 */
 
 const server = http.createServer((req, res) => {
