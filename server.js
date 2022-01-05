@@ -27,6 +27,13 @@ fs.open("./data/salom.js", "w", (err) => {}) ----> bu data folderiga shunchaki y
                                            //! POST & PUT METHODS
 const http = require("http")
 const fs = require("fs")
+const path = require("path");
+
+//!path.resolve()
+// path.resolve(__dirname, "./data/data.js") ==>  mavjud bo`lgan data folderi ichidagi data.js faylini directoriyasini topib olish uchun ishlatiladi
+
+//! path.join()
+// path.join(__dirname, "data/data.js") ==> yangittan yatatvotgan data folder ichiga data.js faylni directoriyasini topib beradi!
 
 const server = http.createServer((req, res) => {
   if (req.method == "POST") {
