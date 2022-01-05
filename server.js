@@ -20,6 +20,9 @@ fs.appendFile("./data/data.js") ----> oldindan yaratilgan data folderiga data.js
 
 !fs.writeFile()
 fs.writeFile("./data/data.js")----> oldindan yaratilgan data folderiga data.js file ni yaratib ichiga content joylab beradi. har yangi ma`lumot jo`natganimizada data.js da mavjud contentni o`chirib yangi ma`lumotni qo`shib qo`yadi! Lekin fs.writeFile() dan oldin fs.readFile() qilib o`qilishi kerak bo`lgan fayl kontenti o`qib olsak keyin fs.writeFile() qiganimizda ham data.js da mavjud contentni o`chirmay davomidan qo`shib qo`yadi!
+
+!fs.open()
+fs.open("./data/salom.js", "w", (err) => {}) ----> bu data folderiga shunchaki yangi salom.js faylini yaratib beradi lekin ichiga hich narsa yozmidi! "w"-> yozishimiza shart va bu asychronny ishlatishimiz uchun kerak!
 */
                                            //! POST & PUT METHODS
 const http = require("http")
@@ -37,7 +40,7 @@ const server = http.createServer((req, res) => {
           arr.push(user)
 
           fs.writeFile("./data/data.js", JSON.stringify(arr), err => {
-            if (err) throw err //!note: "Throw" runtime paytda xatolik bo`sa chiqarib beradi systemani to`xtatib qo`ymidi run-time error "type-error" qilib chiqarib beradi
+            if (err) throw err //!note: "Throw" runtime(ishlab turgan) paytda xatolik bo`sa chiqarib beradi sistemani to`xtatib qo`ymidi run-time error "type-error" qilib chiqarib beradi
             console.log("created")
           })
         })
@@ -46,11 +49,17 @@ const server = http.createServer((req, res) => {
     }
   }
 
-  if(req.method == "PUT"){
-    if(req.url.substring(1, 11) == "updateUser"){
-      const userID = req.url.split('/')[req.url.split('/').length - 1]
-    }
-  }
+  fs.open("./data/salom.js", 'w', (err) =>{
+    if(err) throw err;
+    console.log("salom.js file ochildi!");
+
+  })
+
+  // if(req.method == "PUT"){
+  //   if(req.url.substring(1, 11) == "updateUser"){
+  //     const userID = req.url.split('/')[req.url.split('/').length - 1]
+  //   }
+  // }
 })
 
 server.listen(9000, console.log(9000))
